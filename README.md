@@ -147,7 +147,7 @@ Key source material includes:
 - [NASA Lunar Orbiter 1 mission page](https://science.nasa.gov/mission/lunar-orbiter-1/) and [Lunar Orbiter diagram](https://science.nasa.gov/resource/lunar-orbiter-diagram/) — spacecraft architecture and mission context.
 - [NASA Webb fact sheet](https://science.nasa.gov/wp-content/uploads/2024/08/webbfactsheet.pdf) and [NASA Ariane 5 data sheet](https://sma.nasa.gov/LaunchVehicle/assets/ariane-5-data-sheet.pdf) — Webb and launcher reference data.
 
-### Mission history and engineering references
+### Mission history and engineering references 
 
 Mission descriptions, historical baselines, propulsion, and payload groupings draw on sources including:
 

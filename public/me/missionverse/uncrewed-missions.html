@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uncrewed Missions | MISSIONVERSE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --blue:#64baff;
+  --purple:#c17cff;
+  --panel:rgba(3,9,21,.91)
+}
+
+body{
+  min-height:100vh;
+  color:#fff;
+  font-family:'Rajdhani',sans-serif;
+  background:#020711;
+  overflow-x:hidden
+}
+
+.space-background{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+  radial-gradient(ellipse at 10% 45%,rgba(17,77,128,.25),transparent 35%),
+  radial-gradient(ellipse at 90% 25%,rgba(80,105,155,.18),transparent 35%),
+  linear-gradient(115deg,#020611,#050b19 55%,#01040b)
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background-image:
+  radial-gradient(1px 1px at 10% 20%,white,transparent),
+  radial-gradient(2px 2px at 35% 70%,#8dcfff,transparent),
+  radial-gradient(1px 1px at 60% 15%,white,transparent),
+  radial-gradient(2px 2px at 80% 55%,#bba2ff,transparent),
+  radial-gradient(1px 1px at 92% 80%,white,transparent);
+  background-size:290px 250px;
+  animation:starsMove 45s linear infinite
+}
+
+@keyframes starsMove{
+  to{transform:translateY(-250px)}
+}
+
+.moon{
+  position:fixed;
+  z-index:-1;
+  width:340px;
+  height:340px;
+  right:-125px;
+  top:170px;
+  border-radius:50%;
+  opacity:.25;
+  background:radial-gradient(circle at 35% 30%,#a6b1c0,#4e5868 48%,#101a2b 75%);
+  box-shadow:0 0 65px rgba(117,171,225,.18)
+}
+
+.earth{
+  position:fixed;
+  z-index:-1;
+  width:125px;
+  height:125px;
+  left:-70px;
+  top:240px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#83cfff,#1d5595 50%,#071329 78%);
+  box-shadow:0 0 35px rgba(66,155,255,.35)
+}
+
+.navbar{
+  height:102px;
+  padding:0 2.5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(120,173,226,.2);
+  background:rgba(0,4,12,.72);
+  position:relative;
+  z-index:5
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px
+}
+
+.brand-symbol{
+  width:49px;
+  height:49px;
+  border:1px solid #9a76ff;
+  border-radius:50%;
+  color:#c39aff;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  box-shadow:0 0 15px rgba(157,105,255,.4)
+}
+
+.brand-name{
+  font-family:'Orbitron',sans-serif;
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:3px
+}
+
+.brand-name span{color:#b48cff}
+
+.brand-tagline{
+  color:#b5c3d5;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-top:3px
+}
+
+.nav-links{
+  display:flex;
+  gap:40px;
+  align-items:center
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#e4eaf5;
+  font-size:16px;
+  font-weight:600;
+  padding:38px 4px;
+  transition:.3s
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:white;
+  border-bottom:2px solid #b38aff;
+  text-shadow:0 0 12px #7aafff
+}
+
+.journey{
+  padding:13px 20px;
+  border:1px solid #477db5;
+  border-radius:9px;
+  color:white;
+  background:transparent;
+  font-family:'Rajdhani',sans-serif;
+  font-size:16px;
+  letter-spacing:1px;
+  cursor:pointer
+}
+
+.back-area{padding:26px 2.5% 0}
+
+.back-button{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 19px;
+  color:#a8d7ff;
+  background:rgba(5,20,40,.7);
+  border:1px solid #3977b6;
+  border-radius:9px;
+  text-decoration:none;
+  font-size:17px;
+  transition:.3s
+}
+
+.back-button:hover{
+  box-shadow:0 0 17px rgba(69,164,255,.4);
+  color:white
+}
+
+.heading{
+  text-align:center;
+  padding:0 15px 40px;
+  margin-top:-45px
+}
+
+.heading h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(29px,4vw,46px);
+  font-weight:700;
+  letter-spacing:4px;
+  text-shadow:0 0 20px rgba(113,182,255,.3)
+}
+
+.heading p{
+  margin-top:13px;
+  color:#9dc9f5;
+  font-size:19px
+}
+
+.heading-divider{
+  width:min(500px,80%);
+  height:1px;
+  margin:20px auto 0;
+  background:linear-gradient(90deg,transparent,#588bc6,transparent);
+  position:relative
+}
+
+.heading-divider:after{
+  content:"✦";
+  position:absolute;
+  top:-13px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:0 12px;
+  background:#050b18;
+  color:#82baff;
+  font-size:18px
+}
+
+.mission-grid{
+  width:95%;
+  max-width:1480px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:25px;
+  align-items:stretch
+}
+
+.mission-card{
+  --accent:var(--blue);
+  position:relative;
+  min-width:0;
+  overflow:hidden;
+  padding:20px 20px 28px;
+  border:1px solid rgba(89,170,245,.8);
+  border-radius:20px;
+  background:var(--panel);
+  box-shadow:0 0 18px rgba(35,130,220,.08);
+  transition:transform .35s,box-shadow .35s;
+  display:flex;
+  flex-direction:column
+}
+
+.mission-card.surveyor{
+  --accent:var(--purple);
+  border-color:rgba(193,124,255,.9)
+}
+
+.mission-card.jwst{
+  --accent:#82e5dc;
+  border-color:rgba(130,229,220,.8)
+}
+
+.mission-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 27px rgba(75,163,255,.2)
+}
+
+.mission-card.surveyor:hover{
+  box-shadow:0 0 27px rgba(193,124,255,.2)
+}
+
+.mission-card.jwst:hover{
+  box-shadow:0 0 27px rgba(130,229,220,.2)
+}
+
+.card-heading{
+  display:flex;
+  align-items:center;
+  gap:17px;
+  min-height:125px;
+  margin-bottom:8px
+}
+
+.patch{
+  width:96px;
+  height:96px;
+  flex:0 0 96px;
+  border-radius:50%;
+  border:1px solid var(--accent);
+  padding:3px;
+  display:grid;
+  place-items:center;
+  background:#020916;
+  box-shadow:0 0 13px rgba(100,186,255,.25);
+  overflow:hidden
+}
+
+.patch img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  border-radius:50%;
+  display:block
+}
+
+.patch-symbol{
+  font-size:43px;
+  color:var(--accent);
+  text-shadow:0 0 15px var(--accent)
+}
+
+.mission-heading-text{min-width:0}
+
+.mission-heading-text h2{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(18px,2vw,25px);
+  letter-spacing:1px;
+  white-space:nowrap
+}
+
+.mission-heading-text p{
+  margin-top:7px;
+  color:#a8d5ff;
+  font-size:17px;
+  line-height:1.25
+}
+
+.surveyor .mission-heading-text p{color:#d9b7ff}
+.jwst .mission-heading-text p{color:#a9f2e9}
+
+.mission-photo{
+  width:100%;
+  height:225px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  margin:0 0 17px;
+  filter:brightness(.88) contrast(1.08)
+}
+
+.description{
+  color:#e0e5ed;
+  font-size:17px;
+  line-height:1.5;
+  min-height:79px;
+  padding:0 9px
+}
+
+.stats{
+  border-top:1px solid rgba(110,159,211,.4);
+  margin-top:17px;
+  padding-top:21px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr)
+}
+
+.stat{
+  min-width:0;
+  text-align:center;
+  padding:0 4px;
+  border-right:1px solid rgba(110,159,211,.5)
+}
+
+.stat:last-child{border-right:0}
+
+.stat-icon{
+  color:var(--accent);
+  height:31px;
+  display:grid;
+  place-items:center;
+  margin-bottom:8px;
+  filter:drop-shadow(0 0 6px var(--accent))
+}
+
+.stat-icon svg{
+  width:25px;
+  height:25px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+
+.stat-label{
+  color:#e0e7f0;
+  font-size:15px;
+  margin-bottom:6px
+}
+
+.stat-value{
+  color:#dce6f4;
+  font-size:16px
+}
+
+.explore-button{
+  width:100%;
+  min-height:57px;
+  margin-top:23px;
+  padding:12px 18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  color:white;
+  background:linear-gradient(100deg,rgba(16,53,91,.75),rgba(16,33,65,.85));
+  border:1px solid var(--accent);
+  border-radius:12px;
+  font-family:'Orbitron',sans-serif;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 0 12px rgba(100,186,255,.12);
+  transition:.3s
+}
+
+.explore-button .arrow{
+  position:absolute;
+  right:20px;
+  font-size:27px;
+  font-family:Arial,sans-serif;
+  font-weight:300
+}
+
+.explore-button:hover{
+  background:rgba(35,90,145,.55);
+  box-shadow:0 0 24px rgba(100,186,255,.35);
+  transform:scale(1.015)
+}
+
+.surveyor .explore-button:hover{
+  box-shadow:0 0 24px rgba(193,124,255,.4)
+}
+
+.jwst .explore-button:hover{
+  box-shadow:0 0 24px rgba(130,229,220,.4)
+}
+
+.bottom-message{
+  margin:33px auto 28px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  color:#a9d2fa;
+  font-size:18px;
+  letter-spacing:.5px
+}
+
+.bottom-message .symbol{
+  color:#bca0ff;
+  font-size:21px
+}
+
+footer{
+  padding:20px;
+  text-align:center;
+  color:#718ba9;
+  border-top:1px solid rgba(120,173,226,.15);
+  font-size:13px;
+  letter-spacing:2px
+}
+
+@media(max-width:1100px){
+  .mission-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heading{margin-top:15px}
+  .nav-links{gap:17px}
+}
+
+@media(max-width:700px){
+  .navbar{
+    height:auto;
+    min-height:85px;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:16px 5%
+  }
+
+  .brand-name{font-size:19px}
+
+  .nav-links{
+    width:100%;
+    justify-content:space-between;
+    gap:8px;
+    order:3
+  }
+
+  .nav-links a{
+    font-size:13px;
+    padding:10px 0
+  }
+
+  .journey{
+    font-size:13px;
+    padding:9px 12px
+  }
+
+  .heading{
+    margin-top:35px;
+    padding-bottom:30px
+  }
+
+  .heading h1{letter-spacing:2px}
+
+  .mission-grid{
+    width:90%;
+    grid-template-columns:1fr
+  }
+
+  .mission-card{
+    max-width:480px;
+    width:100%;
+    margin:auto
+  }
+
+  .mission-heading-text h2{font-size:21px}
+  .mission-photo{height:220px}
+
+  .bottom-message{
+    font-size:15px;
+    text-align:center;
+    padding:0 12px
+  }
+
+  .moon{
+    width:220px;
+    height:220px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="space-background"></div>
+<div class="stars"></div>
+<div class="moon"></div>
+<div class="earth"></div>
+
+<nav class="navbar">
+
+  <div class="brand">
+    <div class="brand-symbol">✦</div>
+    <div>
+      <div class="brand-name">MISSION<span>VERSE</span></div>
+      <div class="brand-tagline">EXPLORE. LEARN. LAUNCH.</div>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="Missionverse-animated.html">HOME</a>
+    <a href="missions.html" class="active">MISSIONS</a>
+    <a href="#">SPACECRAFT</a>
+    <a href="#">LEARN</a>
+    <a href="#">ABOUT</a>
+  </div>
+
+  <button class="journey" onclick="alert('My Journey section coming soon!')">
+    MY JOURNEY　♙
+  </button>
+
+</nav>
+
+<div class="back-area">
+  <a href="choose-mission.html" class="back-button">
+    <span>❮</span> BACK
+  </a>
+</div>
+
+<header class="heading">
+  <h1>UNCREWED MISSIONS</h1>
+  <p>Discover the robotic explorers that expanded our understanding of space</p>
+  <div class="heading-divider"></div>
+</header>
+
+<main class="mission-grid">
+
+  <!-- LUNAR ORBITER 1 -->
+
+  <article class="mission-card lunar-orbiter">
+
+    <div class="card-heading">
+
+      <div class="patch">
+  <img
+    src="https://images-assets.nasa.gov/image/LunarOrbiter1/LunarOrbiter1~medium.jpg"
+    alt="Lunar Orbiter 1 spacecraft"
+  >
+</div>
+
+      <div class="mission-heading-text">
+        <h2>LUNAR ORBITER 1</h2>
+        <p>Mapping the Moon</p>
+      </div>
+
+    </div>
+
+    <img
+      class="mission-photo"
+      src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/2023/09/earthise_old_new.jpg?fit=clip&h=1500&w=2000"
+      alt="Earth above the lunar surface photographed by Lunar Orbiter 1"
+    >
+
+    <p class="description">
+      NASA's first spacecraft to orbit the Moon. It photographed potential
+      Apollo landing sites and captured the first image of Earth from the
+      vicinity of the Moon.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2"/>
+          </svg>
+        </div>
+        <div class="stat-label">Launched</div>
+        <div class="stat-value">Aug 10, 1966</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="8" r="3"/>
+            <circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M15 15c3.5-.5 6 1.5 6 5"/>
+          </svg>
+        </div>
+        <div class="stat-label">Crew</div>
+        <div class="stat-value">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1"/>
+          </svg>
+        </div>
+        <div class="stat-label">Destination</div>
+        <div class="stat-value">Moon</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="stat-label">Mission</div>
+        <div class="stat-value">Orbiter</div>
+      </div>
+
+    </div>
+
+    <button class="explore-button" onclick="exploreMission('lunarorbiter1')">
+      EXPLORE MISSION <span class="arrow">›</span>
+    </button>
+
+  </article>
+
+
+  <!-- SURVEYOR 3 -->
+
+  <article class="mission-card surveyor">
+
+    <div class="card-heading">
+
+      <div class="patch">
+  <img
+    src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/a/as12-48-7134.jpg?crop=faces%2Cfocalpoint&fit=clip&h=6515&w=6515"
+    alt="Surveyor 3 spacecraft on the Moon"
+  >
+</div>
+
+      <div class="mission-heading-text">
+        <h2>SURVEYOR 3</h2>
+        <p>The Robotic Moon Lander</p>
+      </div>
+
+    </div>
+
+    <img
+      class="mission-photo"
+      src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/06/as12-48-7134_1280.jpg"
+      alt="Surveyor 3 lander visited by Apollo 12 astronauts"
+    >
+
+    <p class="description">
+      NASA's robotic lunar lander that touched down on the Moon in 1967.
+      It studied the lunar surface and was later visited by Apollo 12 astronauts.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2"/>
+          </svg>
+        </div>
+        <div class="stat-label">Launched</div>
+        <div class="stat-value">Apr 17, 1967</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="8" r="3"/>
+            <circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M15 15c3.5-.5 6 1.5 6 5"/>
+          </svg>
+        </div>
+        <div class="stat-label">Crew</div>
+        <div class="stat-value">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1"/>
+          </svg>
+        </div>
+        <div class="stat-label">Destination</div>
+        <div class="stat-value">Moon</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/>
+          </svg>
+        </div>
+        <div class="stat-label">Mission</div>
+        <div class="stat-value">Lander</div>
+      </div>
+
+    </div>
+
+    <button class="explore-button" onclick="exploreMission('surveyor3')">
+      EXPLORE MISSION <span class="arrow">›</span>
+    </button>
+
+  </article>
+
+
+  <!-- JAMES WEBB SPACE TELESCOPE -->
+
+  <article class="mission-card jwst">
+
+    <div class="card-heading">
+
+      <div class="patch">
+  <img
+    src="https://assets.science.nasa.gov/dynamicimage/assets/science/missions/webb/science/2017/06/STScI-01EVVB9GCHKXGV2QJQZNKN10TP.png?crop=faces%2Cfocalpoint&fit=clip&h=2880&w=2880"
+    alt="James Webb Space Telescope"
+  >
+</div>
+
+      <div class="mission-heading-text">
+        <h2>JAMES WEBB</h2>
+        <p>The Deep-Space Observatory</p>
+      </div>
+
+    </div>
+
+    <img
+      class="mission-photo"
+      src="https://assets.science.nasa.gov/dynamicimage/assets/science/missions/webb/science/2021/12/STScI-01HVPB9P126ZFJ77P1TP38ZMG2.png?fit=clip&h=2000&w=1789"
+      alt="NASA photograph of the Ariane 5 launch carrying Webb"
+    >
+
+    <p class="description">
+      The James Webb Space Telescope explores the universe using infrared
+      technology. It studies distant galaxies, stars and planetary systems
+      from its position near the Sun-Earth L2 point.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2"/>
+          </svg>
+        </div>
+        <div class="stat-label">Launched</div>
+        <div class="stat-value">Dec 25, 2021</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="8" r="3"/>
+            <circle cx="17" cy="9" r="2.5"/>
+            <path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M15 15c3.5-.5 6 1.5 6 5"/>
+          </svg>
+        </div>
+        <div class="stat-label">Crew</div>
+        <div class="stat-value">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>
+          </svg>
+        </div>
+        <div class="stat-label">Location</div>
+        <div class="stat-value">L2 Point</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+          </svg>
+        </div>
+        <div class="stat-label">Mission</div>
+        <div class="stat-value">Telescope</div>
+      </div>
+
+    </div>
+
+    <button class="explore-button" onclick="exploreMission('jwst')">
+      EXPLORE MISSION <span class="arrow">›</span>
+    </button>
+
+  </article>
+
+</main>
+
+<div class="bottom-message">
+  <span class="symbol">✧</span>
+  <span>🚀　Robotic explorers take humanity beyond the stars</span>
+  <span class="symbol">✦</span>
+</div>
+
+<footer>
+  MISSIONVERSE · EXPLORE. LEARN. LAUNCH.
+</footer>
+
+<script>
+function exploreMission(mission){
+  window.location.href =
+    "mission-details.html?mission=" + encodeURIComponent(mission);
+}
+</script>
+
+</body>
+</html>

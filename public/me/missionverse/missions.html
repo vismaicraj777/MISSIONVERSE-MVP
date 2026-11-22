@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISSIONVERSE | Missions</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  font-family: Arial, sans-serif;
+
+  background-image:
+    linear-gradient(rgba(3, 8, 20, 0.48), rgba(3, 8, 20, 0.58)),
+    url('lunar-missions-background.jpeg');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 6%;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: #9beaff;
+  text-shadow: 0 0 15px #00bfff;
+}
+
+.back {
+  text-decoration: none;
+  color: white;
+  border: 1px solid #9b7cff;
+  padding: 11px 20px;
+  border-radius: 8px;
+  transition: .3s;
+}
+
+.back:hover {
+  background: #7955e9;
+  box-shadow: 0 0 20px #a47aff;
+}
+
+main {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  padding: 50px 8%;
+}
+
+.content {
+  max-width: 650px;
+  animation: appear 1.2s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tag {
+  color: #a98aff;
+  letter-spacing: 5px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(55px, 9vw, 100px);
+  line-height: 1;
+  color: white;
+  text-shadow:
+    0 0 12px #7a58ff,
+    0 0 35px #5938d5;
+  margin-bottom: 25px;
+}
+
+.description {
+  color: #e1e8ff;
+  line-height: 1.8;
+  font-size: 17px;
+  margin-bottom: 32px;
+}
+
+.mission-card {
+  padding: 28px;
+  max-width: 470px;
+  border: 1px solid rgba(153, 128, 255, .8);
+  border-radius: 16px;
+  background: rgba(8, 12, 35, .78);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(110, 75, 255, .25);
+  transition: .35s;
+}
+
+.mission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(135, 104, 255, .65);
+}
+
+.mission-card h2 {
+  color: #b9a5ff;
+  font-size: 27px;
+  margin-bottom: 13px;
+}
+
+.mission-card p {
+  color: #d5dcf5;
+  line-height: 1.7;
+  margin-bottom: 23px;
+}
+
+button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #6342dc, #168edb);
+  box-shadow: 0 0 18px #7655ed;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 30px #9478ff;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #c1c7e8;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+@media(max-width: 600px) {
+  main {
+    padding: 45px 6%;
+  }
+}
+</style>
+</head>
+
+<body>
+  
+
+<header>
+  <div class="logo">MISSIONVERSE</div>
+
+  <a class="back" href="Missionverse-animated.html">
+    ← HOME
+  </a>
+</header>
+
+<main>
+  <section class="content">
+
+    <div class="tag">
+      // YOUR NEXT ADVENTURE BEGINS HERE
+    </div>
+
+    <h1>MISSIONS</h1>
+
+    <p class="description">
+      Explorer, welcome to Mission Control.
+      The universe is waiting to be explored.
+      Choose your destination and prepare
+      for an extraordinary lunar adventure.
+    </p>
+
+    <div class="mission-card">
+      <h2>🌕 Lunar Missions</h2>
+
+      <p>
+        Journey beyond Earth and explore the
+        mysterious lunar surface. Discover the
+        Moon's South Pole, investigate its craters,
+        and prepare for your exploration mission.
+      </p>
+
+      <button onclick="location.href='choose-mission.html'">
+        EXPLORE LUNAR MISSIONS →
+      </button>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  MISSIONVERSE — THE CUBIC ODYSSEY
+</footer>
+
+</body>
+</html>

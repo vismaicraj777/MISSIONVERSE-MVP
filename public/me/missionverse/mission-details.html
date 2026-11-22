@@ -1,0 +1,1275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Details | MISSIONVERSE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+ --blue:#50caff;
+ --cyan:#80eaff;
+ --purple:#c17cff;
+ --panel:rgba(3,15,34,.94);
+ --border:rgba(65,177,255,.8);
+}
+
+body{
+ min-height:100vh;
+ background:#020711;
+ color:white;
+ font-family:'Rajdhani',sans-serif;
+ overflow-x:hidden;
+}
+
+.space-background{
+ position:fixed;inset:0;z-index:-3;
+ background:
+ radial-gradient(ellipse at 15% 30%,rgba(15,85,145,.3),transparent 40%),
+ radial-gradient(ellipse at 90% 60%,rgba(70,50,140,.2),transparent 40%),
+ linear-gradient(120deg,#020611,#061329,#01040b);
+}
+
+.stars{
+ position:fixed;inset:0;z-index:-2;
+ pointer-events:none;
+ background-image:
+ radial-gradient(1px 1px at 10% 20%,white,transparent),
+ radial-gradient(2px 2px at 35% 70%,#8dcfff,transparent),
+ radial-gradient(1px 1px at 60% 15%,white,transparent),
+ radial-gradient(2px 2px at 80% 55%,#bba2ff,transparent),
+ radial-gradient(1px 1px at 92% 80%,white,transparent);
+ background-size:290px 250px;
+ animation:starsMove 45s linear infinite;
+}
+
+@keyframes starsMove{
+ to{transform:translateY(-250px)}
+}
+
+.moon{
+ position:fixed;z-index:-1;
+ width:350px;height:350px;
+ right:-150px;top:160px;
+ border-radius:50%;
+ opacity:.2;
+ background:radial-gradient(circle at 35% 30%,#a6b1c0,#4e5868 48%,#101a2b 75%);
+ box-shadow:0 0 65px rgba(117,171,225,.2);
+}
+
+.navbar{
+ min-height:88px;
+ padding:12px 3%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:20px;
+ border-bottom:1px solid rgba(120,173,226,.25);
+ background:rgba(0,4,12,.85);
+ position:relative;
+ z-index:5;
+}
+
+.brand{display:flex;align-items:center;gap:12px}
+
+.brand-symbol{
+ width:49px;height:49px;
+ border:1px solid var(--purple);
+ border-radius:50%;
+ display:grid;place-items:center;
+ color:#d1a5ff;font-size:26px;
+ box-shadow:0 0 15px rgba(157,105,255,.4);
+}
+
+.brand-name{
+ font-family:'Orbitron',sans-serif;
+ font-size:clamp(17px,2vw,25px);
+ font-weight:700;letter-spacing:2px;
+}
+
+.brand-name span{color:#b48cff}
+
+.brand-tagline{
+ color:#b5c3d5;font-size:11px;
+ letter-spacing:2px;margin-top:4px;
+}
+
+.nav-links{
+ display:flex;gap:30px;align-items:center;
+}
+
+.nav-links a{
+ color:#e4eaf5;text-decoration:none;
+ font-size:16px;font-weight:600;
+ transition:.3s;
+}
+
+.nav-links a:hover{color:var(--cyan)}
+
+.journey{
+ padding:12px 18px;
+ border:1px solid #477db5;
+ border-radius:9px;
+ color:white;background:transparent;
+ font-family:inherit;font-size:16px;
+}
+
+.back-area{padding:24px 3% 12px}
+
+.back-button{
+ display:inline-flex;gap:10px;
+ align-items:center;
+ padding:10px 18px;
+ color:#a8d7ff;
+ background:rgba(5,20,40,.8);
+ border:1px solid #3977b6;
+ border-radius:9px;
+ text-decoration:none;
+ font-size:17px;
+}
+
+.page{
+ width:95%;
+ max-width:1500px;
+ margin:auto;
+}
+
+.hero{
+ position:relative;
+ min-height:390px;
+ border:1px solid var(--border);
+ border-radius:17px;
+ overflow:hidden;
+ display:flex;
+ align-items:center;
+ background:#061329;
+ box-shadow:0 0 24px rgba(60,180,255,.18);
+}
+
+.hero-image{
+ position:absolute;inset:0;
+ width:100%;height:100%;
+ object-fit:cover;
+ opacity:.57;
+}
+
+.hero:after{
+ content:"";
+ position:absolute;inset:0;
+ background:linear-gradient(90deg,#020a18 5%,rgba(2,10,24,.94) 30%,rgba(2,10,24,.15) 100%);
+}
+
+.hero-content{
+ position:relative;z-index:2;
+ padding:35px;
+ max-width:550px;
+}
+
+.hero h1{
+ font-family:'Orbitron',sans-serif;
+ font-size:clamp(30px,5vw,54px);
+ letter-spacing:3px;
+}
+
+.subtitle{
+ color:var(--cyan);
+ font-size:21px;
+ font-weight:700;
+ letter-spacing:3px;
+ margin:10px 0 17px;
+}
+
+.hero-meta{
+ display:flex;flex-wrap:wrap;gap:10px;
+ margin-bottom:18px;
+}
+
+.meta{
+ border:1px solid #568cbd;
+ padding:9px 13px;
+ border-radius:8px;
+ background:rgba(0,10,25,.7);
+ font-size:15px;
+}
+
+.hero-description{
+ font-size:18px;
+ line-height:1.5;
+ color:#e0eaf6;
+}
+
+.quote{
+ margin-top:17px;
+ border:1px solid #4688c0;
+ border-radius:10px;
+ padding:12px;
+ font-size:16px;
+ font-style:italic;
+ color:#dceaff;
+ background:rgba(0,10,25,.65);
+}
+
+.emblem{
+ position:absolute;z-index:3;
+ right:25px;top:20px;
+ width:135px;height:135px;
+ border-radius:50%;
+ border:3px solid #e7c76b;
+ background:radial-gradient(circle,#183c61,#020817);
+ box-shadow:0 0 20px rgba(100,186,255,.35);
+ display:flex;align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ padding:10px;
+}
+
+.emblem strong{
+ font-family:'Orbitron',sans-serif;
+ font-size:13px;
+ color:#ffdb83;
+}
+
+.emblem span{font-size:39px;margin-top:5px}
+.emblem small{font-size:10px;color:#d6e8ff}
+
+.tabs{
+ display:flex;gap:12px;
+ margin:20px 0;
+ overflow-x:auto;
+ padding:3px 2px 12px;
+ scrollbar-width:thin;
+}
+
+.tab{
+ flex:0 0 auto;
+ padding:12px 20px;
+ border:1px solid #426d99;
+ border-radius:10px;
+ color:#e5edfa;
+ background:rgba(4,17,37,.9);
+ font-family:'Rajdhani',sans-serif;
+ font-size:16px;font-weight:700;
+ cursor:pointer;
+ transition:.3s;
+}
+
+.tab:hover,.tab.active{
+ border-color:var(--cyan);
+ color:white;
+ box-shadow:0 0 18px rgba(67,190,255,.5);
+ background:rgba(12,63,100,.7);
+}
+
+.section-title{
+ font-family:'Orbitron',sans-serif;
+ font-size:19px;
+ letter-spacing:1px;
+ margin-bottom:20px;
+ color:#c7edff;
+ display:flex;align-items:center;gap:12px;
+}
+
+.content-section{
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:23px;
+ background:var(--panel);
+ box-shadow:0 0 18px rgba(35,130,220,.12);
+ margin-bottom:20px;
+ animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.overview-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:15px;
+}
+
+.info-card{
+ border:1px solid rgba(80,170,230,.45);
+ border-radius:12px;
+ padding:17px;
+ background:linear-gradient(135deg,rgba(18,49,79,.8),rgba(3,15,33,.9));
+ min-width:0;
+ transition:.3s;
+}
+
+.info-card:hover{
+ transform:translateY(-4px);
+ border-color:var(--cyan);
+ box-shadow:0 0 15px rgba(70,180,255,.17);
+}
+
+.info-card h3{
+ color:var(--cyan);
+ font-size:19px;
+ margin-bottom:12px;
+}
+
+.info-card p{
+ color:#e2eaf5;
+ font-size:16px;
+ line-height:1.5;
+}
+
+.card-icon{
+ font-size:28px;
+ margin-bottom:9px;
+}
+
+.card-image{
+ width:100%;height:155px;
+ object-fit:cover;
+ border-radius:9px;
+ margin-bottom:12px;
+ background:#07182d;
+}
+
+.detail-list{
+ display:grid;
+ gap:13px;
+}
+
+.detail-item{
+ display:flex;
+ gap:14px;
+ align-items:flex-start;
+ padding:14px;
+ background:rgba(12,42,70,.6);
+ border:1px solid rgba(80,170,230,.25);
+ border-radius:10px;
+}
+
+.detail-icon{font-size:25px;min-width:32px}
+.detail-item h3{color:var(--cyan);font-size:18px}
+.detail-item p{color:#e3eaf5;font-size:16px;margin-top:4px;line-height:1.4}
+
+.people-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:16px;
+}
+
+.person{
+ border:1px solid rgba(80,170,230,.4);
+ border-radius:13px;
+ background:rgba(11,35,62,.8);
+ padding:15px;
+ text-align:center;
+}
+
+.person img{
+ width:105px;height:105px;
+ border-radius:50%;
+ border:2px solid var(--blue);
+ object-fit:cover;
+ margin-bottom:10px;
+ background:#07182d;
+}
+
+.person h3{color:white;font-size:20px}
+.person .role{color:var(--cyan);font-size:16px}
+.person p{color:#dce6f2;margin-top:8px;font-size:15px}
+
+.timeline{
+ position:relative;
+ margin-left:13px;
+ padding-left:30px;
+ border-left:2px solid #4aaeff;
+ display:grid;gap:19px;
+}
+
+.timeline-item{position:relative}
+.timeline-item:before{
+ content:"";
+ position:absolute;
+ left:-38px;top:5px;
+ width:14px;height:14px;
+ border-radius:50%;
+ background:var(--cyan);
+ box-shadow:0 0 12px var(--blue);
+}
+
+.timeline-item h3{color:var(--cyan);font-size:18px}
+.timeline-item p{font-size:16px;color:#e4eaf5;margin-top:3px}
+
+.spec-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;
+}
+
+.spec{
+ border-left:3px solid var(--cyan);
+ padding:12px 15px;
+ background:rgba(20,53,81,.65);
+}
+
+.spec strong{color:var(--cyan);display:block;font-size:16px}
+.spec span{font-size:17px;display:block;margin-top:5px}
+
+.gallery-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:14px;
+}
+
+.gallery-image{
+ width:100%;height:220px;
+ object-fit:cover;
+ border-radius:10px;
+ border:1px solid #468dc5;
+ transition:.3s;
+ background:#07182d;
+}
+
+.gallery-image:hover{
+ transform:scale(1.025);
+ box-shadow:0 0 18px rgba(80,180,255,.4);
+}
+
+.gallery-caption{
+ color:#c9e9ff;
+ font-size:15px;
+ margin-top:7px;
+}
+
+.gallery-item{min-width:0}
+
+.source{
+ display:inline-block;
+ color:#8deaff;
+ margin-top:17px;
+ font-size:15px;
+}
+
+.actions{
+ display:flex;justify-content:center;
+ gap:20px;flex-wrap:wrap;
+ margin:30px 0 50px;
+}
+
+.action-button{
+ min-width:260px;
+ padding:17px 23px;
+ text-align:center;
+ text-decoration:none;
+ color:white;
+ border:1px solid var(--blue);
+ border-radius:12px;
+ background:linear-gradient(100deg,#0b3157,#06172d);
+ box-shadow:0 0 15px rgba(60,180,255,.2);
+ font-family:'Orbitron',sans-serif;
+ font-size:14px;
+ transition:.3s;
+ cursor:pointer;
+}
+
+.action-button:hover{
+ transform:translateY(-4px);
+ box-shadow:0 0 24px rgba(70,190,255,.5);
+}
+
+.challenge{
+ border-color:var(--purple);
+ background:linear-gradient(100deg,#43206f,#17123e);
+ box-shadow:0 0 18px rgba(193,124,255,.3);
+}
+
+footer{
+ text-align:center;
+ padding:22px;
+ border-top:1px solid rgba(120,173,226,.2);
+ color:#819bb8;
+ letter-spacing:2px;
+}
+
+.hidden{display:none!important}
+
+@media(max-width:950px){
+ .overview-grid,.spec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .nav-links{gap:13px}
+ .hero{min-height:430px}
+}
+
+@media(max-width:650px){
+ .navbar{flex-wrap:wrap}
+ .nav-links{width:100%;justify-content:space-between;order:3}
+ .nav-links a{font-size:12px}
+ .journey{display:none}
+ .hero-content{padding:22px}
+ .hero:after{background:linear-gradient(90deg,rgba(2,10,24,.95),rgba(2,10,24,.6))}
+ .emblem{width:90px;height:90px;right:12px;top:12px}
+ .emblem span{font-size:25px}
+ .emblem strong{font-size:9px}
+ .overview-grid,.spec-grid,.people-grid,.gallery-grid{grid-template-columns:1fr}
+ .content-section{padding:15px}
+ .actions{flex-direction:column}
+ .action-button{width:100%;min-width:0}
+}
+</style>
+</head>
+
+<body>
+<div class="space-background"></div>
+<div class="stars"></div>
+<div class="moon"></div>
+
+<nav class="navbar">
+ <div class="brand">
+  <div class="brand-symbol">✦</div>
+  <div>
+   <div class="brand-name">MISSION<span>VERSE</span></div>
+   <div class="brand-tagline">EXPLORE. LEARN. LAUNCH.</div>
+  </div>
+ </div>
+
+ <div class="nav-links">
+  <a href="Missionverse-animated.html">HOME</a>
+  <a href="missions.html">MISSIONS</a>
+  <a href="#">SPACECRAFT</a>
+  <a href="#">LEARN</a>
+  <a href="#">ABOUT</a>
+ </div>
+
+ <button class="journey">MY JOURNEY ♙</button>
+</nav>
+
+<div class="back-area">
+ <a href="choose-mission.html" class="back-button">❮ BACK TO MISSIONS</a>
+</div>
+
+<main class="page">
+
+<section class="hero">
+ <img id="heroImage" class="hero-image" alt="NASA mission photograph">
+
+ <div class="hero-content">
+  <h1 id="missionTitle">APOLLO 11</h1>
+  <div class="subtitle" id="missionSubtitle"></div>
+
+  <div class="hero-meta">
+   <div class="meta" id="launchDate"></div>
+   <div class="meta" id="destination"></div>
+  </div>
+
+  <p class="hero-description" id="description"></p>
+  <div class="quote" id="quote"></div>
+ </div>
+
+ <div class="emblem">
+  <strong id="emblemTitle">APOLLO 11</strong>
+  <span id="emblemIcon">🚀</span>
+  <small>MISSIONVERSE</small>
+ </div>
+</section>
+
+<nav class="tabs" id="tabs">
+ <button class="tab active" data-section="overview">✧ OVERVIEW</button>
+ <button class="tab" data-section="crew">♙ CREW / TEAM</button>
+ <button class="tab" data-section="spacecraft">🚀 SPACECRAFT</button>
+ <button class="tab" data-section="timeline">◷ TIMELINE</button>
+ <button class="tab" data-section="achievements">☆ ACHIEVEMENTS</button>
+ <button class="tab" data-section="facts">✦ INTERESTING FACTS</button>
+ <button class="tab" data-section="gallery">▣ GALLERY</button>
+</nav>
+
+<!-- OVERVIEW -->
+<section class="content-section" id="overview">
+ <h2 class="section-title">✧ MISSION OVERVIEW</h2>
+ <div class="overview-grid" id="overviewGrid"></div>
+</section>
+
+<!-- CREW -->
+<section class="content-section hidden" id="crew">
+ <h2 class="section-title">♙ CREW / MISSION TEAM</h2>
+ <div class="people-grid" id="peopleGrid"></div>
+</section>
+
+<!-- SPACECRAFT -->
+<section class="content-section hidden" id="spacecraft">
+ <h2 class="section-title">🚀 SPACECRAFT / INSTRUMENTS</h2>
+ <div class="overview-grid" id="spacecraftGrid"></div>
+</section>
+
+<!-- TIMELINE -->
+<section class="content-section hidden" id="timeline">
+ <h2 class="section-title">◷ MISSION TIMELINE</h2>
+ <div class="timeline" id="timelineList"></div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="content-section hidden" id="achievements">
+ <h2 class="section-title">☆ KEY ACHIEVEMENTS</h2>
+ <div class="detail-list" id="achievementList"></div>
+</section>
+
+<!-- FACTS -->
+<section class="content-section hidden" id="facts">
+ <h2 class="section-title">✦ INTERESTING FACTS</h2>
+ <div class="detail-list" id="factsList"></div>
+</section>
+
+<!-- GALLERY -->
+<section class="content-section hidden" id="gallery">
+ <h2 class="section-title">▣ NASA MISSION GALLERY</h2>
+ <p style="color:#a9dfff;margin-bottom:16px">
+  Explore photographs from NASA's official image collection.
+ </p>
+ <div class="gallery-grid" id="galleryGrid"></div>
+ <p id="galleryStatus" style="margin-top:15px;color:#9bcdf0"></p>
+</section>
+
+<!-- TECHNICAL SPECIFICATIONS -->
+<section class="content-section" id="technical">
+ <h2 class="section-title">⚙ TECHNICAL SPECIFICATIONS</h2>
+ <div class="spec-grid" id="specGrid"></div>
+</section>
+
+<div class="actions">
+ <a class="action-button" id="nasaLink" href="#" target="_blank" rel="noopener">
+  ⓘ MORE INFORMATION ↗
+ </a>
+
+ <button class="action-button challenge" id="challengeButton">
+  🚀 CHOOSE THIS CHALLENGE ›
+ </button>
+</div>
+
+</main>
+
+<footer>MISSIONVERSE · EXPLORE. LEARN. LAUNCH.</footer>
+
+<script>
+const missions = {
+
+apollo11:{
+ name:"APOLLO 11",
+ subtitle:"THE FIRST MOON LANDING",
+ launch:"July 16, 1969",
+ destination:"Destination: Moon",
+ icon:"🦅",
+ imageQuery:"Apollo 11 lunar surface astronaut",
+ description:"Apollo 11 was the first crewed mission to land on the Moon. Neil Armstrong and Buzz Aldrin explored the lunar surface while Michael Collins remained in lunar orbit.",
+ quote:"“That's one small step for [a] man, one giant leap for mankind.” — Neil Armstrong",
+ nasa:"https://www.nasa.gov/mission/apollo-11/",
+ image:"https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~medium.jpg",
+ overview:[
+ ["🎯","Mission objective","Complete the first crewed lunar landing and return safely to Earth."],
+ ["🌙","Mission programme","Apollo Program"],
+ ["📍","Landing site","Sea of Tranquility"],
+ ["⏱","Mission duration","8 days, 3 hours, 18 minutes"],
+ ["🚀","Mission type","Crewed lunar landing"],
+ ["🌎","Return destination","Earth"]
+ ],
+ people:[
+ ["Neil A. Armstrong","Commander","First person to walk on the Moon.","https://images-assets.nasa.gov/image/S69-31741/S69-31741~medium.jpg"],
+ ["Buzz Aldrin","Lunar Module Pilot","Second person to walk on the Moon.","https://images-assets.nasa.gov/image/S69-31742/S69-31742~medium.jpg"],
+ ["Michael Collins","Command Module Pilot","Orbited the Moon in Columbia.","https://images-assets.nasa.gov/image/S69-31743/S69-31743~medium.jpg"]
+ ],
+ spacecraft:[
+ ["🚀","Saturn V","The powerful launch vehicle that carried Apollo 11 into space."],
+ ["🌙","LM-5 Eagle","The Lunar Module that landed Armstrong and Aldrin on the Moon."],
+ ["🛰","CSM-107 Columbia","The Command and Service Module; Collins stayed in lunar orbit while Eagle landed. No rover flew on Apollo 11."]
+ ],
+ timeline:[
+ ["July 16, 1969","Launch from Kennedy Space Center."],
+ ["July 19, 1969","Entered lunar orbit."],
+ ["July 20, 1969","Landed on the Moon at 20:17 UTC."],
+ ["July 21, 1969","First moonwalk by Armstrong and Aldrin (UTC)."],
+ ["July 24, 1969","Splashdown in the Pacific Ocean."]
+ ],
+ achievements:[
+ "First humans to land on the Moon.",
+ "First human steps on the lunar surface.",
+ "Collected lunar samples for scientific study.",
+ "Performed experiments on the Moon.",
+ "Paved the way for future lunar exploration."
+ ],
+ facts:[
+ "The Lunar Module Eagle landed in the Sea of Tranquility.",
+ "The mission was watched by millions of people around the world.",
+ "Michael Collins remained in lunar orbit while the landing took place.",
+ "The crew returned safely to Earth on July 24, 1969."
+ ],
+ specs:[
+ ["Launch vehicle","Saturn V"],
+ ["Documented propulsion","5 F-1 first-stage engines; 5 J-2 second-stage engines; 1 restartable J-2 third-stage engine. CSM AJ10-137 SPS; LM descent and ascent engines."],
+ ["Spacecraft","Columbia and Eagle"],
+ ["Launch date","July 16, 1969"],
+ ["Landing date","July 20, 1969"],
+ ["Splashdown","July 24, 1969"],
+ ["Mission duration","8 days, 3 hours, 18 minutes"],
+ ["Lunar sample return","About 21.5 kg"],
+ ["Destination","Moon"]
+ ]
+},
+
+apollo17:{
+ name:"APOLLO 17",
+ subtitle:"THE LAST CREWED MOON LANDING",
+ launch:"December 7, 1972",
+ destination:"Destination: Moon",
+ icon:"🌙",
+ imageQuery:"Apollo 17 astronaut lunar rover Moon",
+ description:"Apollo 17 was the sixth and final crewed lunar landing mission of NASA's Apollo programme. Its crew explored the Taurus-Littrow region and collected valuable lunar samples.",
+ quote:"The final Apollo lunar landing mission — a major milestone in human exploration.",
+ nasa:"https://www.nasa.gov/mission/apollo-17/",
+ image:"https://images-assets.nasa.gov/image/as17-146-22294/as17-146-22294~medium.jpg",
+ overview:[
+ ["🎯","Mission objective","Explore the Taurus-Littrow lunar region and conduct scientific investigations."],
+ ["🌙","Mission programme","Apollo Program"],
+ ["📍","Landing site","Taurus-Littrow Valley"],
+ ["⏱","Mission duration","12 days, 13 hours, 51 minutes"],
+ ["🚀","Mission type","Crewed lunar landing"],
+ ["🔬","Main focus","Lunar geology and science"]
+ ],
+ people:[
+ ["Eugene Cernan","Commander","Commander of the final Apollo lunar landing."],
+ ["Harrison Schmitt","Lunar Module Pilot","Geologist and lunar explorer."],
+ ["Ronald Evans","Command Module Pilot","Orbited the Moon aboard America."]
+ ],
+ spacecraft:[
+ ["🚀","Saturn V","Launch vehicle for Apollo 17."],
+ ["🌙","LM-12 Challenger","Lunar Module used for the lunar landing."],
+ ["🛰","CSM-114 America","Command and Service Module; Ron Evans remained in lunar orbit."],
+ ["🚙","Lunar Roving Vehicle","Battery-powered crew rover used on the lunar surface; Apollo 17 was one of the only three Apollo missions to carry one."]
+ ],
+ timeline:[
+ ["December 7, 1972","Launch from Kennedy Space Center."],
+ ["December 10, 1972","Entered lunar orbit."],
+ ["December 11, 1972","Landed in Taurus-Littrow."],
+ ["December 12, 1972","First lunar surface excursion."],
+ ["December 14, 1972","Final Apollo lunar liftoff."],
+ ["December 19, 1972","Returned to Earth."]
+ ],
+ achievements:[
+ "Completed the sixth successful crewed lunar landing.",
+ "Conducted extensive geological exploration.",
+ "Collected approximately 110.5 kg of lunar material.",
+ "Used the Lunar Roving Vehicle for surface exploration.",
+ "Completed the final human lunar landing of the Apollo programme."
+ ],
+ facts:[
+ "Apollo 17 carried geologist Harrison Schmitt.",
+ "The crew explored the Taurus-Littrow valley.",
+ "The Lunar Roving Vehicle helped the astronauts travel farther.",
+ "Eugene Cernan was the last person to walk on the Moon."
+ ],
+ specs:[
+ ["Launch vehicle","Saturn V"],
+ ["Documented propulsion","Saturn V: 5 F-1, 5 J-2, and 1 J-2. CSM AJ10-137 SPS; LM-12 Challenger had separate descent and ascent engines."],
+ ["Spacecraft","America and Challenger"],
+ ["Launch date","December 7, 1972"],
+ ["Landing date","December 11, 1972"],
+ ["Splashdown","December 19, 1972"],
+ ["Mission duration","12 days, 13 hours, 51 minutes"],
+ ["Lunar sample return","Approximately 110.5 kg"],
+ ["Destination","Moon"]
+ ]
+},
+
+apollo8:{
+ name:"APOLLO 8",
+ subtitle:"FIRST CREWED MISSION TO ORBIT THE MOON",
+ launch:"December 21, 1968",
+ destination:"Destination: Lunar orbit",
+ icon:"🌍",
+ imageQuery:"Apollo 8 Earthrise Moon photograph",
+ description:"Apollo 8 was the first crewed spacecraft to travel to and orbit the Moon. The mission achieved a major milestone in human spaceflight and captured the famous Earthrise photograph.",
+ quote:"“Earthrise” — one of the most iconic photographs in space exploration.",
+ nasa:"https://www.nasa.gov/mission/apollo-8/",
+ image:"https://images-assets.nasa.gov/image/as08-14-2383/as08-14-2383~medium.jpg",
+ overview:[
+ ["🎯","Mission objective","Carry astronauts to lunar orbit and safely return to Earth."],
+ ["🌙","Mission programme","Apollo Program"],
+ ["📍","Destination","Lunar orbit"],
+ ["⏱","Mission duration","6 days, 3 hours, 42 minutes"],
+ ["🚀","Mission type","Crewed lunar orbital mission"],
+ ["📷","Famous photograph","Earthrise"]
+ ],
+ people:[
+ ["Frank Borman","Commander","Led the first crewed lunar orbital mission."],
+ ["James Lovell","Command Module Pilot","Experienced astronaut and lunar mission pioneer."],
+ ["William Anders","Lunar Module Pilot","The crew role was Lunar Module Pilot; Apollo 8 carried no Lunar Module. He photographed the famous Earthrise image."]
+ ],
+ spacecraft:[
+ ["🚀","Saturn V","Launch vehicle used for the mission."],
+ ["🛰","CSM-103","Command and Service Module carried the crew to lunar orbit and back."],
+ ["📦","LTA-B test article","Structural ballast occupied the Lunar Module position; Apollo 8 carried no Lunar Module or rover."]
+ ],
+ timeline:[
+ ["December 21, 1968","Launch from Kennedy Space Center."],
+ ["December 24, 1968","Entered lunar orbit."],
+ ["December 24, 1968","Photographed Earthrise."],
+ ["December 25, 1968","Departed lunar orbit."],
+ ["December 27, 1968","Splashdown in the Pacific Ocean."]
+ ],
+ achievements:[
+ "First crewed mission to orbit the Moon.",
+ "First humans to witness the far side of the Moon directly.",
+ "Captured the famous Earthrise photograph.",
+ "Demonstrated the ability to navigate and operate around the Moon.",
+ "Prepared the way for future lunar landing missions."
+ ],
+ facts:[
+ "Apollo 8 astronauts saw the far side of the Moon with their own eyes.",
+ "The famous Earthrise photograph was taken during the mission.",
+ "The mission took place during Christmas 1968.",
+ "Apollo 8 helped prove that crewed lunar missions were possible."
+ ],
+ specs:[
+ ["Launch vehicle","Saturn V"],
+ ["Documented propulsion","Saturn V: 5 F-1, 5 J-2, and 1 J-2. CSM-103 used an AJ10-137 Service Propulsion System; no Lunar Module or rover flew."],
+ ["Spacecraft","Apollo Command and Service Module"],
+ ["Launch date","December 21, 1968"],
+ ["Lunar orbit","December 24, 1968"],
+ ["Splashdown","December 27, 1968"],
+ ["Mission duration","6 days, 3 hours, 42 minutes"],
+ ["Crew","3 astronauts"],
+ ["Destination","Lunar orbit"]
+ ]
+},
+
+lunarorbiter1:{
+ name:"LUNAR ORBITER 1",
+ subtitle:"MAPPING THE MOON FROM ORBIT",
+ launch:"August 10, 1966",
+ destination:"Destination: Lunar orbit",
+ icon:"🌙",
+ imageQuery:"NASA Lunar Orbiter 1 spacecraft Moon",
+ image:"https://images-assets.nasa.gov/image/LunarOrbiter1/LunarOrbiter1~medium.jpg",
+ nasa:"https://science.nasa.gov/mission/lunar-orbiter-1/",
+ description:"Lunar Orbiter 1 was NASA's first Lunar Orbiter spacecraft. It photographed the lunar surface to help identify and map potential landing sites for future Apollo missions.",
+ quote:"Mapping the lunar surface helped prepare the way for human exploration.",
+ overview:[
+ ["🎯","Mission objective","Photograph and map the Moon to identify potential landing sites."],
+ ["🌙","Mission programme","Lunar Orbiter Program"],
+ ["📍","Destination","Moon"],
+ ["⏱","Mission period","1966"],
+ ["🛰","Mission type","Uncrewed lunar orbiter"],
+ ["📷","Main purpose","Lunar photography and mapping"]
+ ],
+ people:[
+ ["NASA","Mission operator","NASA managed the Lunar Orbiter programme."],
+ ["Boeing","Spacecraft contractor","Built the Lunar Orbiter spacecraft."],
+ ["NASA tracking teams","Mission support","Tracked the spacecraft and received scientific data."]
+ ],
+ spacecraft:[
+ ["🛰","Lunar Orbiter 1","Robotic spacecraft designed to orbit and photograph the Moon."],
+ ["📷","Imaging system","Captured photographs of lunar surface regions."],
+ ["📡","Communication system","Transmitted mission data to Earth."]
+ ],
+ timeline:[
+ ["August 10, 1966","Launch from Cape Canaveral."],
+ ["August 14, 1966","Entered lunar orbit."],
+ ["August 1966","Began photographing the lunar surface."],
+ ["August 23, 1966","Captured the famous Earthrise image from lunar orbit."],
+ ["October 29, 1966","Mission ended after impact with the Moon."]
+ ],
+ achievements:[
+ "First Lunar Orbiter mission successfully reached lunar orbit.",
+ "Helped map potential Apollo landing sites.",
+ "Returned detailed photographs of the Moon.",
+ "Captured an early image of Earth from lunar orbit.",
+ "Supported NASA's preparations for crewed lunar landings."
+ ],
+ facts:[
+ "Lunar Orbiter 1 was a robotic spacecraft.",
+ "It photographed both near-side and far-side lunar regions.",
+ "Its images helped scientists select safer landing locations.",
+ "The mission was part of a five-spacecraft Lunar Orbiter programme."
+ ],
+ specs:[
+ ["Spacecraft","Lunar Orbiter 1"],
+ ["Launch vehicle","Atlas-Agena D"],
+ ["Documented propulsion","Atlas booster and Agena D translunar-injection stage; Lunar Orbiter's own main engine performed lunar-orbit insertion and corrections."],
+ ["Launch date","August 10, 1966"],
+ ["Destination","Lunar orbit"],
+ ["Mission type","Robotic orbiter"],
+ ["Main instrument","Photographic imaging system"],
+ ["Operator","NASA"],
+ ["Programme","Lunar Orbiter"]
+ ]
+},
+
+surveyor3:{
+ name:"SURVEYOR 3",
+ subtitle:"ROBOTIC EXPLORER OF THE MOON",
+ launch:"April 17, 1967",
+ destination:"Destination: Moon",
+ icon:"🤖",
+ imageQuery:"NASA Surveyor 3 lunar lander Moon",
+ image:"https://images-assets.nasa.gov/image/AS12-48-7134/AS12-48-7134~medium.jpg",
+ nasa:"https://science.nasa.gov/mission/surveyor-3/",
+ description:"Surveyor 3 was an uncrewed NASA lunar lander. It successfully landed on the Moon and studied the surface. Apollo 12 astronauts later visited the spacecraft and brought some of its components back to Earth.",
+ quote:"A robotic explorer that helped scientists understand the lunar surface before astronauts arrived.",
+ overview:[
+ ["🎯","Mission objective","Study the lunar surface and demonstrate soft landing technology."],
+ ["🌙","Mission programme","Surveyor Program"],
+ ["📍","Landing site","Oceanus Procellarum"],
+ ["⏱","Mission period","1967"],
+ ["🤖","Mission type","Robotic lunar lander"],
+ ["🔬","Main purpose","Lunar soil investigation"]
+ ],
+ people:[
+ ["NASA","Mission operator","Managed the Surveyor lunar exploration programme."],
+ ["Hughes Aircraft","Spacecraft contractor","Designed and built the Surveyor spacecraft."],
+ ["Apollo 12 astronauts","Later visitors","Pete Conrad and Alan Bean visited Surveyor 3 in 1969."]
+ ],
+ spacecraft:[
+ ["🤖","Surveyor 3","Robotic spacecraft designed to land on the Moon."],
+ ["📷","Television camera","Captured images of the lunar surface."],
+ ["🦾","Soil sampler","Investigated the properties of lunar soil."]
+ ],
+ timeline:[
+ ["April 17, 1967","Launch from Cape Canaveral."],
+ ["April 20, 1967","Soft landing on the Moon."],
+ ["April 1967","Began transmitting lunar surface images."],
+ ["1967","Conducted lunar soil investigations."],
+ ["November 1969","Apollo 12 astronauts visited Surveyor 3."]
+ ],
+ achievements:[
+ "Achieved a successful robotic lunar landing.",
+ "Returned thousands of lunar surface images.",
+ "Investigated lunar soil properties.",
+ "Demonstrated technology for future lunar exploration.",
+ "Became the first spacecraft visited by astronauts after landing on the Moon."
+ ],
+ facts:[
+ "Surveyor 3 landed in Oceanus Procellarum.",
+ "Apollo 12 astronauts later visited the lander.",
+ "Parts of Surveyor 3 were brought back to Earth by Apollo 12.",
+ "The mission helped scientists understand the lunar surface."
+ ],
+ specs:[
+ ["Spacecraft","Surveyor 3"],
+ ["Launch vehicle","Atlas-Centaur"],
+ ["Documented propulsion","Atlas LV-3C / Centaur D with twin RL-10 engines; Surveyor used a solid main retrorocket and three throttleable vernier engines for descent."],
+ ["Launch date","April 17, 1967"],
+ ["Landing date","April 20, 1967"],
+ ["Landing site","Oceanus Procellarum"],
+ ["Mission type","Robotic lunar lander"],
+ ["Operator","NASA"],
+ ["Programme","Surveyor Program"]
+ ]
+},
+
+jwst:{
+ name:"JAMES WEBB SPACE TELESCOPE",
+ subtitle:"UNVEILING THE DEEP UNIVERSE",
+ launch:"December 25, 2021",
+ destination:"Destination: Sun-Earth L2",
+ icon:"🔭",
+ imageQuery:"NASA James Webb Space Telescope golden mirror",
+ image:"https://images-assets.nasa.gov/image/jwst/JWST~medium.jpg",
+ nasa:"https://science.nasa.gov/mission/webb/",
+ description:"The James Webb Space Telescope is a powerful space observatory designed to study the early universe, distant galaxies, stars, exoplanets and the atmospheres of other worlds.",
+ quote:"Looking deeper into space means looking further back in cosmic history.",
+ overview:[
+ ["🎯","Mission objective","Study the universe, early galaxies, stars and exoplanets."],
+ ["🔭","Mission programme","NASA / ESA / CSA collaboration"],
+ ["📍","Destination","Sun-Earth Lagrange Point 2"],
+ ["⏱","Launch","December 25, 2021"],
+ ["🛰","Mission type","Infrared space observatory"],
+ ["🌌","Main purpose","Explore the universe in infrared light"]
+ ],
+ people:[
+ ["NASA","Agency partner","Leads the mission with international partners."],
+ ["ESA","Agency partner","European Space Agency contributed mission technology and launch services."],
+ ["CSA","Agency partner","Canadian Space Agency contributed scientific instruments."]
+ ],
+ spacecraft:[
+ ["🔭","Primary mirror","A 6.5-metre segmented gold-coated mirror."],
+ ["☀","Sunshield","Five-layer sunshield protects the telescope from heat."],
+ ["📷","NIRCam","Near-Infrared Camera for imaging distant objects."],
+ ["🌈","MIRI","Mid-Infrared Instrument for observing infrared wavelengths."]
+ ],
+ timeline:[
+ ["December 25, 2021","Launched aboard an Ariane 5 rocket."],
+ ["January 2022","Reached the Sun-Earth L2 region."],
+ ["January 2022","Completed major mirror deployment."],
+ ["July 2022","Released its first full-colour scientific images."],
+ ["2022 onwards","Began scientific observations of the universe."]
+ ],
+ achievements:[
+ "Captured some of the deepest infrared images of the universe.",
+ "Observed extremely distant galaxies.",
+ "Studied the atmospheres of exoplanets.",
+ "Provided new insights into star and planet formation.",
+ "Opened a new era of infrared astronomy."
+ ],
+ facts:[
+ "Webb's primary mirror is 6.5 metres wide.",
+ "Its mirror consists of 18 gold-coated segments.",
+ "The telescope observes primarily in infrared light.",
+ "Its sunshield is about the size of a tennis court.",
+ "It operates near the Sun-Earth L2 region."
+ ],
+ specs:[
+ ["Telescope type","Infrared space observatory"],
+ ["Documented propulsion","Ariane 5 ECA: two solid boosters, Vulcain 2 core engine, HM7B upper-stage engine. Webb uses storable bipropellant for large maneuvers and hydrazine thrusters for corrections."],
+ ["Primary mirror","6.5 metres"],
+ ["Mirror segments","18"],
+ ["Launch vehicle","Ariane 5"],
+ ["Launch date","December 25, 2021"],
+ ["Destination","Sun-Earth L2"],
+ ["Mass","Approximately 6,200 kg"],
+ ["International partners","NASA, ESA and CSA"]
+ ]
+}
+
+};
+
+const params=new URLSearchParams(window.location.search);
+let missionId=params.get("mission")||"apollo11";
+if(!missions[missionId])missionId="apollo11";
+
+const mission=missions[missionId];
+
+function setText(id,value){
+ document.getElementById(id).textContent=value;
+}
+
+function renderOverview(){
+ const grid=document.getElementById("overviewGrid");
+ grid.innerHTML="";
+
+ mission.overview.forEach(item=>{
+  grid.innerHTML+=`
+   <article class="info-card">
+    <div class="card-icon">${item[0]}</div>
+    <h3>${item[1]}</h3>
+    <p>${item[2]}</p>
+   </article>`;
+ });
+}
+
+function renderPeople(){
+ const grid=document.getElementById("peopleGrid");
+ grid.innerHTML="";
+
+ mission.people.forEach(person=>{
+  grid.innerHTML+=`
+   <article class="person">
+    <img src="${person[3]||""}" alt="${person[0]}"
+     onerror="this.style.display='none'">
+    <h3>${person[0]}</h3>
+    <div class="role">${person[1]}</div>
+    <p>${person[2]}</p>
+   </article>`;
+ });
+}
+
+function renderSpacecraft(){
+ const grid=document.getElementById("spacecraftGrid");
+ grid.innerHTML="";
+
+ mission.spacecraft.forEach(item=>{
+  grid.innerHTML+=`
+   <article class="info-card">
+    <div class="card-icon">${item[0]}</div>
+    <h3>${item[1]}</h3>
+    <p>${item[2]}</p>
+   </article>`;
+ });
+}
+
+function renderTimeline(){
+ const list=document.getElementById("timelineList");
+ list.innerHTML="";
+
+ mission.timeline.forEach(item=>{
+  list.innerHTML+=`
+   <div class="timeline-item">
+    <h3>${item[0]}</h3>
+    <p>${item[1]}</p>
+   </div>`;
+ });
+}
+
+function renderList(elementId,items,icon){
+ const list=document.getElementById(elementId);
+ list.innerHTML="";
+
+ items.forEach(item=>{
+  list.innerHTML+=`
+   <div class="detail-item">
+    <div class="detail-icon">${icon}</div>
+    <p>${item}</p>
+   </div>`;
+ });
+}
+
+function renderSpecs(){
+ const grid=document.getElementById("specGrid");
+ grid.innerHTML="";
+
+ mission.specs.forEach(item=>{
+  grid.innerHTML+=`
+   <div class="spec">
+    <strong>${item[0]}</strong>
+    <span>${item[1]}</span>
+   </div>`;
+ });
+}
+
+function loadMission(){
+ document.title=mission.name+" | MISSIONVERSE";
+
+ setText("missionTitle",mission.name);
+ setText("missionSubtitle",mission.subtitle);
+ setText("launchDate","▣ Launched: "+mission.launch);
+ setText("destination","◉ "+mission.destination);
+ setText("description",mission.description);
+ setText("quote",mission.quote);
+ setText("emblemTitle",mission.name);
+ setText("emblemIcon",mission.icon);
+
+ document.getElementById("heroImage").src=mission.image;
+ document.getElementById("nasaLink").href=mission.nasa;
+
+ renderOverview();
+ renderPeople();
+ renderSpacecraft();
+ renderTimeline();
+ renderList("achievementList",mission.achievements,"🏆");
+ renderList("factsList",mission.facts,"✦");
+ renderSpecs();
+
+ loadGallery();
+}
+
+document.querySelectorAll(".tab").forEach(button=>{
+ button.addEventListener("click",()=>{
+  const section=button.dataset.section;
+
+  document.querySelectorAll(".tab").forEach(tab=>{
+   tab.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  document.querySelectorAll(
+   ".content-section:not(#technical)"
+  ).forEach(panel=>{
+   panel.classList.add("hidden");
+  });
+
+  document.getElementById(section).classList.remove("hidden");
+
+  if(section==="gallery"){
+   document.getElementById("gallery").scrollIntoView({
+    behavior:"smooth",block:"start"
+   });
+  }else{
+   document.getElementById(section).scrollIntoView({
+    behavior:"smooth",block:"start"
+   });
+  }
+ });
+});
+
+// NASA OFFICIAL IMAGE API
+async function loadGallery(){
+ const grid=document.getElementById("galleryGrid");
+ const status=document.getElementById("galleryStatus");
+
+ grid.innerHTML="";
+ status.textContent="Loading NASA mission photographs...";
+
+ try{
+  const query=encodeURIComponent(mission.imageQuery||mission.name);
+  const url=
+   "https://images-api.nasa.gov/search?q="+query+
+   "&media_type=image&page_size=30";
+
+  const response=await fetch(url);
+  if(!response.ok)throw new Error("NASA image service unavailable");
+
+  const data=await response.json();
+  const items=data.collection.items||[];
+
+  const photos=items
+   .filter(item=>item.links&&item.links.length)
+   .slice(0,12);
+
+  if(!photos.length)throw new Error("NASA image search returned no usable photographs");
+
+  photos.forEach(item=>{
+   const image=item.links[0].href;
+   const title=item.data[0].title||mission.name;
+
+   const card=document.createElement("div");
+   card.className="gallery-item";
+
+   const img=document.createElement("img");
+   img.className="gallery-image";
+   img.src=image;
+   img.alt=title;
+   img.loading="lazy";
+
+   const caption=document.createElement("p");
+   caption.className="gallery-caption";
+   caption.textContent=title;
+
+   card.appendChild(img);
+   card.appendChild(caption);
+   grid.appendChild(card);
+  });
+
+  status.textContent="Photographs retrieved from NASA's official image collection.";
+
+ }catch(error){
+  if(mission.image){
+   const card=document.createElement("div");
+   card.className="gallery-item";
+   const img=document.createElement("img");
+   img.className="gallery-image";
+   img.src=mission.image;
+   img.alt=mission.name+" NASA reference image";
+   img.loading="lazy";
+   const caption=document.createElement("p");
+   caption.className="gallery-caption";
+   caption.textContent=mission.name+" — NASA reference image";
+   card.appendChild(img);
+   card.appendChild(caption);
+   grid.appendChild(card);
+   status.textContent="NASA image search is unavailable. Showing the mission’s NASA-hosted reference image.";
+  }else{
+   status.textContent="NASA's image collection could not load. Check your internet connection and try again.";
+  }
+ }
+}
+
+// CHOOSE THIS CHALLENGE
+document.getElementById("challengeButton")
+ .addEventListener("click",()=>{
+  const simulatorMissionIds = {
+   apollo11:"apollo-11",
+   apollo17:"apollo-17",
+   apollo8:"apollo-8",
+   lunarorbiter1:"lunar-orbiter-1",
+   surveyor3:"surveyor-3",
+   jwst:"jwst"
+  };
+  const simulatorId = simulatorMissionIds[missionId] || "apollo-11";
+  window.location.href = "/?mission=" + encodeURIComponent(simulatorId);
+ });
+
+loadMission();
+</script>
+
+</body>
+</html>

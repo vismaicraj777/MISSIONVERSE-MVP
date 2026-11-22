@@ -1,0 +1,6 @@
+{
+  "name": "Lunar Trajectory — Space Mission Design",
+  "description": "Realistic 3D aerospace mission design and flight simulation featuring Earth launch, atmospheric ascent, multi-stage separation, and lunar landing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

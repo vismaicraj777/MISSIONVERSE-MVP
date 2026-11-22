@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Your Mission | MISSIONVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    background:
+        linear-gradient(rgba(2, 6, 17, 0.36), rgba(2, 6, 17, 0.52)),
+        url('mission-control-background.jpeg') center center / cover fixed;
+    position: relative;
+}
+
+/* Animated stars */
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white 99%, transparent),
+        radial-gradient(2px 2px at 80% 20%, white 99%, transparent),
+        radial-gradient(1px 1px at 50% 60%, white 99%, transparent),
+        radial-gradient(2px 2px at 70% 80%, white 99%, transparent),
+        radial-gradient(1px 1px at 10% 75%, white 99%, transparent),
+        radial-gradient(2px 2px at 90% 55%, white 99%, transparent);
+    background-size: 350px 350px;
+    animation: twinkle 5s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* Moon */
+.moon {
+    position: fixed;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #e8efff, #8798b7 65%, #52627f);
+    bottom: -125px;
+    right: 8%;
+    box-shadow: 0 0 70px rgba(145, 181, 255, 0.3);
+    opacity: 0.65;
+    z-index: 0;
+}
+
+header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 45px 20px 10px;
+}
+
+.logo {
+    color: #78d7ff;
+    font-size: 15px;
+    letter-spacing: 6px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(83, 183, 255, 0.8);
+}
+
+.subtitle {
+    color: #b9cce8;
+    margin-top: 14px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.mission-options {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 45px;
+    padding: 55px 25px 90px;
+}
+
+.mission-card {
+    width: 350px;
+    max-width: 100%;
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: 22px;
+    background: rgba(9, 24, 49, 0.88);
+    border: 1px solid rgba(112, 190, 255, 0.4);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    backdrop-filter: blur(8px);
+}
+
+.mission-card.crewed {
+    box-shadow: 0 0 18px rgba(40, 153, 255, 0.25);
+}
+
+.mission-card.uncrewed {
+    border-color: rgba(182, 119, 255, 0.5);
+    box-shadow: 0 0 18px rgba(166, 91, 255, 0.25);
+}
+
+.mission-card:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+.mission-card.crewed:hover {
+    box-shadow: 0 0 35px rgba(40, 153, 255, 0.65);
+}
+
+.mission-card.uncrewed:hover {
+    box-shadow: 0 0 35px rgba(182, 119, 255, 0.65);
+}
+
+/* Mission images */
+.mission-icon {
+    width: 280px;
+    height: 280px;
+    max-width: 100%;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle, #142c52, #030a19);
+    border: 2px solid rgba(135, 200, 255, 0.5);
+    box-shadow: 0 0 25px rgba(73, 166, 255, 0.25);
+    transition: transform 0.4s ease;
+}
+
+.mission-card:hover .mission-icon {
+    transform: scale(1.04);
+}
+
+.mission-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+h2 {
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.crewed h2 {
+    color: #75caff;
+}
+
+.uncrewed h2 {
+    color: #c69aff;
+}
+
+.description {
+    color: #c0cce0;
+    line-height: 1.7;
+    font-size: 14px;
+    min-height: 72px;
+    margin-bottom: 22px;
+}
+
+.choose-btn {
+    padding: 13px 28px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.crewed .choose-btn {
+    background: linear-gradient(90deg, #087bdb, #36baff);
+    box-shadow: 0 0 15px rgba(54, 186, 255, 0.45);
+}
+
+.uncrewed .choose-btn {
+    background: linear-gradient(90deg, #7434d6, #bd73ff);
+    box-shadow: 0 0 15px rgba(189, 115, 255, 0.45);
+}
+
+.choose-btn:hover {
+    transform: scale(1.07);
+    filter: brightness(1.2);
+}
+
+.back-btn {
+    position: relative;
+    z-index: 3;
+    display: block;
+    margin: 0 auto 35px;
+    padding: 11px 25px;
+    border: 1px solid #6e9bc8;
+    border-radius: 25px;
+    background: transparent;
+    color: #d5e8ff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(75, 150, 220, 0.2);
+    box-shadow: 0 0 15px rgba(75, 150, 220, 0.4);
+}
+
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 15px;
+    color: #8299ba;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding-top: 35px;
+    }
+
+    .mission-options {
+        gap: 28px;
+        padding-top: 35px;
+    }
+
+    .mission-card {
+        width: 330px;
+        padding: 25px 20px;
+    }
+
+    .mission-icon {
+        width: 220px;
+        height: 220px;
+    }
+
+    .moon {
+        width: 160px;
+        height: 160px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="moon"></div>
+
+<header>
+    <div class="logo">MISSIONVERSE</div>
+    <h1>CHOOSE YOUR MISSION</h1>
+    <p class="subtitle">
+        Your journey to the Moon begins here.
+    </p>
+</header>
+
+<main class="mission-options">
+
+    <!-- CREWED MISSION CARD -->
+    <div class="mission-card crewed">
+
+        <div class="mission-icon">
+            <img src="./astronaut.png.jpeg"
+                 alt="Astronaut exploring space">
+        </div>
+
+        <h2>CREWED MISSIONS</h2>
+
+        <p class="description">
+            Take command of a human lunar expedition.
+            Explore the Moon, support your crew and
+            experience the challenges of space exploration.
+        </p>
+
+        <button class="choose-btn" onclick="chooseCategory('crew')">
+    EXPLORE CREWED MISSIONS
+        </button>
+
+    </div>
+
+    <!-- UNCREWED MISSION CARD -->
+    <div class="mission-card uncrewed">
+
+        <div class="mission-icon">
+            <img src="./rocket.png.jpeg"
+                 alt="Rocket exploring the Moon">
+        </div>
+
+        <h2>UNCREWED MISSIONS</h2>
+
+        <p class="description">
+            Control robotic explorers, lunar landers and
+            orbiters. Discover the Moon using advanced
+            technology without sending a human crew.
+        </p>
+
+        <button class="choose-btn"
+                onclick="chooseCategory('uncrewed')">
+            EXPLORE UNCREWED MISSIONS
+        </button>
+
+    </div>
+
+</main>
+
+<button class="back-btn"
+        onclick="window.location.href='missions.html'">
+    ← BACK TO MISSIONS
+</button>
+
+<footer>
+    MISSIONVERSE — THE CUBIC ODYSSEY
+</footer>
+
+<script>
+function chooseCategory(category) {
+
+    if (category === "crew") {
+        window.location.href = "crewed-missions.html";
+    }
+
+    else if (category === "uncrewed") {
+        window.location.href = "uncrewed-missions.html";
+    }
+
+}
+</script>
+
+</body>
+</html>

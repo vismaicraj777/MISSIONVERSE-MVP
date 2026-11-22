@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#03050b">
+<title>Missionverse — The Cubic Odyssey</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0}body{overflow:hidden;background:#03050b;color:#eafaff;font-family:Arial,sans-serif}.screen{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:#03050b}.world-scene{position:absolute;inset:0;overflow:hidden;transform-origin:50% 50%;animation:scene-drift 14s ease-in-out infinite alternate}.art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block}.earth-sheen{position:absolute;z-index:1;overflow:hidden;left:34%;top:22%;width:59%;height:58%;border-radius:50%;background:radial-gradient(ellipse at 18% 52%,transparent 50%,#51cfff09 58%,#65ddff62 69%,#43baff18 75%,transparent 80%);mix-blend-mode:screen;filter:blur(8px);pointer-events:none;animation:earth-sweep 24s ease-in-out infinite alternate}.earth-rotation{position:absolute;z-index:2;left:35%;top:22%;width:57%;height:57%;border-radius:50%;clip-path:ellipse(50% 50%);background:linear-gradient(90deg,transparent 37%,#02071755 49%,#08152a55 53%,transparent 66%);mix-blend-mode:multiply;transform-origin:50% 50%;pointer-events:none;animation:earth-turn 38s linear infinite}.sun-glow{position:absolute;z-index:2;right:-4%;top:-12%;width:22%;height:42%;border-radius:50%;background:radial-gradient(ellipse at 60% 60%,#fff8d6c9 0,#ffec8a8c 16%,#ffad3c77 37%,#ff5e2270 58%,transparent 76%);mix-blend-mode:screen;filter:blur(13px);opacity:.42;pointer-events:none;animation:sun-breath 5.2s ease-in-out infinite alternate}.starfield{position:absolute;z-index:1;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 7% 14%,#dffaff 99%,transparent),radial-gradient(1px 1px at 13% 42%,#dffaff 99%,transparent),radial-gradient(1.2px 1.2px at 23% 11%,#dffaff 99%,transparent),radial-gradient(1px 1px at 31% 67%,#dffaff 99%,transparent),radial-gradient(1.1px 1.1px at 37% 20%,#dffaff 99%,transparent),radial-gradient(1px 1px at 48% 75%,#dffaff 99%,transparent),radial-gradient(1.1px 1.1px at 54% 14%,#dffaff 99%,transparent),radial-gradient(1px 1px at 61% 67%,#dffaff 99%,transparent),radial-gradient(1.1px 1.1px at 72% 13%,#dffaff 99%,transparent),radial-gradient(1px 1px at 84% 43%,#dffaff 99%,transparent),radial-gradient(1.1px 1.1px at 91% 28%,#dffaff 99%,transparent),radial-gradient(1px 1px at 96% 76%,#dffaff 99%,transparent);opacity:.2;animation:star-twinkle 4s ease-in-out infinite alternate}.starfield:after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 17% 83%,#e8fcff 99%,transparent),radial-gradient(1px 1px at 29% 32%,#e8fcff 99%,transparent),radial-gradient(1px 1px at 45% 8%,#e8fcff 99%,transparent),radial-gradient(1px 1px at 68% 85%,#e8fcff 99%,transparent),radial-gradient(1px 1px at 79% 24%,#e8fcff 99%,transparent),radial-gradient(1px 1px at 93% 61%,#e8fcff 99%,transparent);opacity:.3;animation:star-twinkle 5.5s ease-in-out infinite alternate-reverse}.milkyway-glow{position:absolute;z-index:2;left:16%;bottom:4%;width:18%;height:12%;border-radius:50%;background:radial-gradient(ellipse,#fff1b43a 0,#e9b56d24 25%,#ae99ff18 47%,transparent 73%);filter:blur(13px);opacity:.36;pointer-events:none;animation:milky-drift 14s ease-in-out infinite alternate}.art-motion{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}.astronaut-layer{position:absolute;z-index:3;display:block;object-fit:fill;filter:drop-shadow(0 6px 8px #0009);will-change:transform}.astro-left{left:25.39%;top:64.84%;width:9.57%;height:17.77%;animation:float-left 4.2s ease-in-out infinite}.astro-right{left:37.96%;top:62.7%;width:7.62%;height:14.26%;animation:float-right 4.9s ease-in-out infinite}.moving-planet{position:absolute;z-index:3;display:block;object-fit:fill;transform-origin:50% 50%;will-change:transform}.planet-blue{left:8.46%;top:11.13%;width:6.19%;height:9.09%;animation:planet-sway 16s ease-in-out infinite alternate}.planet-purple{left:4.56%;top:19.82%;width:3.45%;height:5.18%;animation:planet-sway-reverse 19s ease-in-out infinite alternate}.planet-ring{left:70.77%;top:4.88%;width:3.84%;height:4.98%;animation:planet-sway 23s ease-in-out infinite alternate}.satellite-layer{position:absolute;z-index:3;left:78.65%;top:59.47%;width:21.35%;height:25.88%;object-fit:fill;transform-origin:50% 48%;filter:drop-shadow(0 5px 8px #0009);mix-blend-mode:normal;opacity:1;will-change:transform;animation:satellite-drift 7s ease-in-out infinite}.start-text{position:absolute;z-index:6;left:41.8%;top:52.34%;width:20.51%;height:5.96%;object-fit:fill;pointer-events:none;mix-blend-mode:screen;will-change:opacity,filter;animation:text-flicker 2.8s ease-in-out infinite}.ship-motion,.astro-motion{position:absolute;inset:0;width:100%;height:100%;background-image:url('missionverse-reference.jpeg');background-size:100% 100%;background-repeat:no-repeat;will-change:transform;mix-blend-mode:screen;opacity:.68}.ship-motion{clip-path:polygon(0 39%,5% 40%,7% 37%,10% 39%,13% 42%,15% 39%,18% 35%,20% 35%,20% 39%,24% 38%,27% 35%,30% 33%,34% 33%,37% 30%,42% 29%,46% 31%,49% 31%,52% 35%,57% 39%,54% 44%,52% 48%,49% 51%,46% 54%,41% 55%,37% 57%,34% 58%,30% 59%,27% 57%,23% 56%,20% 54%,17% 54%,15% 57%,12% 56%,10% 53%,7% 52%,5% 50%,2% 49%,0 48%);animation:ship-drift 4s ease-in-out infinite alternate;filter:brightness(1.35) saturate(1.15)}.astro-motion{mix-blend-mode:screen;opacity:.62;clip-path:polygon(37% 64%,40% 64%,42% 66%,44% 69%,45% 72%,46% 75%,44% 77%,43% 79%,42% 77%,41% 75%,40% 72%,39% 70%,38% 68%);animation:astro-drift 5.8s ease-in-out infinite alternate;filter:brightness(1.45)}.asteroid-cover{position:absolute;inset:0;background-image:url('missionverse-reference.jpeg');background-size:100% 100%;pointer-events:none;opacity:.58;mix-blend-mode:screen;clip-path:polygon(25% 63%,27% 63%,29% 66%,30% 70%,32% 72%,33% 75%,32% 78%,30% 80%,28% 79%,27% 82%,25% 81%,24% 78%,22% 77%,23% 73%,24% 69%);animation:person-drift 5s ease-in-out infinite alternate}.engine-flicker{position:absolute;left:0;top:38%;width:23%;height:21%;clip-path:polygon(0 8%,45% 12%,60% 31%,100% 45%,60% 55%,50% 82%,0 80%);background:radial-gradient(ellipse at 73% 48%,#fff9bc 0,#ffd464aa 12%,#ff832c77 34%,#ff4b2400 72%);mix-blend-mode:screen;filter:blur(7px);animation:engine-flare 3.4s ease-in-out infinite alternate;pointer-events:none}.astronaut-copy{position:absolute;inset:0;background-image:url('missionverse-reference.jpeg');background-size:100% 100%;mix-blend-mode:screen;opacity:.62;pointer-events:none;clip-path:polygon(37% 64%,40% 64%,42% 66%,44% 69%,45% 72%,46% 75%,44% 77%,43% 79%,42% 77%,41% 75%,40% 72%,39% 70%,38% 68%);animation:person-drift 6s 1s ease-in-out infinite alternate}.start-glow{position:absolute;z-index:4;left:33.8%;top:48.8%;width:32.8%;height:12.1%;border:2px solid #73f5ffee;clip-path:polygon(7% 0,93% 0,100% 18%,100% 82%,93% 100%,7% 100%,0 82%,0 18%);background:radial-gradient(ellipse,#25dcff15,transparent 70%);box-shadow:0 0 28px #1bdfffa6,inset 0 0 22px #1bdfff66;opacity:.48;animation:button-glow 3.4s ease-in-out infinite;cursor:pointer}.start-glow:hover{opacity:.8;filter:brightness(1.3)}.start-glow:focus-visible{outline:2px solid #fff;outline-offset:4px}.dialog{position:absolute;inset:0;display:grid;place-items:center;background:#020812c9;backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:.22s;font-family:Arial,sans-serif}.dialog.open{opacity:1;visibility:visible}.dialog-card{width:min(390px,88%);padding:26px;border:1px solid #4ce5ff9c;background:linear-gradient(145deg,#071a2d,#030b15);box-shadow:0 0 36px #08bfff45}.dialog-card h2{margin:0 0 10px;color:#67eaff;font-size:19px;letter-spacing:.1em}.dialog-card p{margin:0 0 19px;color:#d6e5ec;line-height:1.5;white-space:pre-line}.dialog-card button{padding:9px 15px;border:1px solid #52eaff;background:#075b88;color:#e9fdff;font-weight:bold;cursor:pointer}.close{float:right;background:transparent!important;border:0!important;color:#b8dbe6;font-size:20px}.sound-toggle{position:absolute;right:2.3%;top:3.3%;width:4.2%;height:6.2%;border:0;background:transparent;cursor:pointer;opacity:0}.sound-hint{position:absolute;inset:0;pointer-events:none}.toast{position:absolute;right:2.5%;top:10%;padding:9px 12px;border:1px solid #50dfff;background:#051524eF;color:#baf6ff;font:12px Arial,sans-serif;opacity:0;transition:.2s}.toast.show{opacity:1}
+@keyframes planet-sway{0%{transform:translate(0,0) rotate(-3deg)}50%{transform:translate(1px,-2px) rotate(0deg)}100%{transform:translate(0,0) rotate(3deg)}}@keyframes planet-sway-reverse{0%{transform:translate(0,0) rotate(3deg)}50%{transform:translate(-1px,1px) rotate(0deg)}100%{transform:translate(0,0) rotate(-3deg)}}@keyframes satellite-drift{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-7px,-8px) rotate(-.8deg)}}@keyframes text-flicker{0%,9%,11%,48%,51%,100%{opacity:.96;filter:brightness(1.22) drop-shadow(0 0 7px #32dcff)}10%,49%{opacity:.34;filter:brightness(.82)}50%{opacity:.68;filter:brightness(1.5) drop-shadow(0 0 14px #64f2ff)}}@keyframes sun-flare{0%,100%{opacity:.28;filter:blur(5px) brightness(.9)}35%{opacity:.9;filter:blur(2px) brightness(1.25)}38%{opacity:.48}42%{opacity:.94;filter:blur(3px) brightness(1.3)}76%{opacity:.54}}@keyframes earth-terminator{to{transform:rotate(360deg)}}@keyframes float-left{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-3px,-16px) rotate(2deg)}}@keyframes float-right{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(2px,-13px) rotate(-2deg)}}@keyframes scene-drift{0%{transform:scale(1.008)}100%{transform:scale(1.035) translate(-.22%,.12%)}}@keyframes earth-sweep{0%{transform:translateX(-2%) scale(.99);opacity:.2}100%{transform:translateX(2%) scale(1.015);opacity:.52}}@keyframes star-twinkle{0%{opacity:.16}45%{opacity:.58}50%{opacity:.24}100%{opacity:.64}}@keyframes sun-breath{0%{opacity:.28;filter:blur(16px) brightness(.94)}100%{opacity:.82;filter:blur(10px) brightness(1.2)}}@keyframes milky-drift{0%{transform:translate(-7px,1px) scale(.99);opacity:.22}100%{transform:translate(12px,-4px) scale(1.035);opacity:.6}}@keyframes earth-turn{to{transform:rotate(360deg)}}@keyframes button-glow{0%,100%{opacity:.34;filter:brightness(.98);transform:scale(.997)}50%{opacity:.9;filter:brightness(1.2);transform:scale(1.01)}}@keyframes engine-flare{0%{opacity:.35;transform:scaleX(.96)}100%{opacity:.76;transform:scaleX(1.04)}}@keyframes ship-drift{0%{transform:translate(0,0);opacity:.32}50%{opacity:.62}100%{transform:translate(19px,-12px);opacity:.52}}@keyframes astro-drift{0%{transform:translate(0,0)}100%{transform:translate(-2px,-16px)}}@keyframes person-drift{0%{transform:translate(0,0);opacity:.35}100%{transform:translate(0,-15px);opacity:.7}}
+
+
+.nav-hit{position:absolute;z-index:7;left:1.7%;width:15.2%;height:5.3%;border:1px solid transparent;background:transparent;cursor:pointer;border-radius:7px}
+.nav-hit:hover,.nav-hit:focus-visible{border-color:#55dcff;background:#32cfff18;box-shadow:0 0 13px #20cfff88;outline:none}
+.nav-hit:focus-visible{outline:2px solid #eafaff;outline-offset:2px}
+.nav-load{top:64.3%}.nav-log{top:70.4%}.nav-settings{top:76.4%}.nav-about{top:82.4%}.nav-exit{top:88.4%}
+.dialog-card .dialog-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.dialog-card .secondary{background:transparent;border-color:#397d91;color:#c8f5ff}
+</style>
+</head>
+<body><main class="screen" aria-label="Missionverse game menu"><div class="world-scene">
+<img class="art" src="missionverse-motion-base.png" alt="Missionverse: The Cubic Odyssey game menu in a detailed space scene">
+<div class="starfield" aria-hidden="true"></div><div class="sun-glow" aria-hidden="true"></div><div class="milkyway-glow" aria-hidden="true"></div><div class="earth-sheen" aria-hidden="true"></div><div class="earth-rotation" aria-hidden="true"></div><div class="art-motion" aria-hidden="true"><img class="moving-planet planet-blue" src="planet-blue.png" alt=""><img class="moving-planet planet-purple" src="planet-purple.png" alt=""><img class="moving-planet planet-ring" src="planet-ring.png" alt=""><img class="satellite-layer" src="satellite.png" alt=""><div class="engine-flicker"></div><img class="astronaut-layer astro-left" src="astronaut-left.png" alt=""><img class="astronaut-layer astro-right" src="astronaut-right.png" alt=""></div>
+<button class="start-glow"
+        aria-label="Start mission"
+        onclick="window.location.href='missions.html'">
+</button>
+<button class="nav-hit nav-load" data-action="load" aria-label="Load mission" title="Load mission"></button>
+<button class="nav-hit nav-log" data-action="log" aria-label="Mission log" title="Mission log"></button>
+<button class="nav-hit nav-settings" data-action="settings" aria-label="Settings" title="Settings"></button>
+<button class="nav-hit nav-about" data-action="about" aria-label="About" title="About"></button>
+<button class="nav-hit nav-exit" data-action="exit" aria-label="Exit game" title="Exit game"></button>
+<button class="sound-toggle" id="sound" aria-label="Toggle sound"></button></div><div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><section class="dialog-card"><button class="close" aria-label="Close">×</button><h2 id="dialog-title">MISSION BRIEFING</h2><p id="dialog-message">Your crew is ready, Explorer. The Cubic Odyssey awaits beyond the stars.</p><div class="dialog-actions"><button class="secondary close-action" type="button">CLOSE</button><button class="ack" type="button">ACKNOWLEDGE</button></div></section></div><div class="toast" id="toast">Audio systems online.</div></main>
+<script>
+const dialog=document.querySelector('#dialog');
+const title=document.querySelector('#dialog-title');
+const message=document.querySelector('#dialog-message');
+const closeDialog=()=>dialog.classList.remove('open');
+const openDialog=(heading,body)=>{
+  title.textContent=heading;
+  message.textContent=body;
+  dialog.classList.add('open');
+};
+let toastTimer;
+const audioMuted=()=>{
+  try{return localStorage.getItem('missionverse:muted')==='true';}
+  catch{return false;}
+};
+const setAudioMuted=muted=>{
+  try{localStorage.setItem('missionverse:muted',String(muted));}catch{}
+  document.querySelector('#sound').setAttribute('aria-pressed',String(muted));
+};
+const toggleAudio=()=>{
+  const muted=!audioMuted();
+  setAudioMuted(muted);
+  const toast=document.querySelector('#toast');
+  toast.textContent=`Mission audio ${muted?'muted':'on'}.`;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove('show'),1800);
+  return muted;
+};
+const readMissionLog=()=>{
+  try{
+    const entries=JSON.parse(localStorage.getItem('missionverse:history')||'[]');
+    if(!Array.isArray(entries)||entries.length===0)return 'No flights recorded yet. Complete a mission to see your result here.';
+    return entries.slice(0,8).map(entry=>{
+      const when=entry.date?new Date(entry.date).toLocaleDateString():'';
+      const result=entry.result==='MISSION_COMPLETE'?'SUCCESS':'ABORTED';
+      return `${entry.mission||'Mission'} · ${result} · ${entry.score??0}/100${when?` · ${when}`:''}`;
+    }).join('\n');
+  }catch{return 'Mission history is unavailable in this browser session.';}
+};
+document.querySelectorAll('.nav-hit').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const action=button.dataset.action;
+    if(action==='load'){
+      window.location.href='missions.html';
+    }else if(action==='exit'){
+      openDialog('EXIT MISSIONVERSE','Your mission log is saved in this browser. Close this tab or window when you are ready to leave the game.');
+    }else if(action==='log'){
+      openDialog('MISSION LOG',readMissionLog());
+    }else if(action==='settings'){
+      const muted=toggleAudio();
+      openDialog('SETTINGS',`Mission audio is now ${muted?'muted':'on'}. This preference is saved on this device and applies to the simulator.`);
+    }else if(action==='about'){
+      openDialog('ABOUT MISSIONVERSE','An educational space-mission design and flight simulation. Mission facts and model provenance are documented in NASA_MODEL_SOURCES.md. Historical missions use documented hardware as the baseline; custom engine packages are marked as what-if scenarios. MissionVerse is an independent project and is not affiliated with or endorsed by NASA.');
+    }
+  });
+});
+document.querySelector('.close').addEventListener('click',closeDialog);
+document.querySelector('.close-action').addEventListener('click',closeDialog);
+document.querySelector('.ack').addEventListener('click',closeDialog);
+dialog.addEventListener('click',event=>{if(event.target===dialog)closeDialog();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeDialog();});
+document.querySelector('#sound').setAttribute('aria-pressed',String(audioMuted()));
+document.querySelector('#sound').addEventListener('click',toggleAudio);
+</script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
